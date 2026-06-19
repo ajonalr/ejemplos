@@ -2,6 +2,8 @@ require('dotenv').config()
 
 const express = require('express')
 const morgan = require('morgan')
+const bodyParser = require('body-parser');
+
 
 
 const userRoute = require('./routes/user.routes')
@@ -16,6 +18,7 @@ app.use(express.json())
 
 app.use('/user', userRoute)
 app.use('/product', productRoute)
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const PORT = process.env.PORT || 3000
 
