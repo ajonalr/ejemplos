@@ -2,14 +2,11 @@ require('dotenv').config()
 
 const express = require('express')
 const morgan = require('morgan')
-const bodyParser = require('body-parser');
-
 
 
 const userRoute = require('./routes/user.routes')
 const productRoute = require('./routes/product.routes')
 const sequelize = require('./database/connection')
-
 
 const app = express()
 
@@ -18,7 +15,9 @@ app.use(express.json())
 
 app.use('/user', userRoute)
 app.use('/product', productRoute)
-app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 const PORT = process.env.PORT || 3000
 
@@ -26,7 +25,7 @@ const PORT = process.env.PORT || 3000
 sequelize.sync({
     force: false
 })
-.then(() => {
+    .then(() => {
         console.log('🔄 Tablas sincronizadas con éxito.');
         app.listen(PORT, () => {
             console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);

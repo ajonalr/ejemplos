@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize')
 const sequelize = require('../database/connection')
 
 
-const User = sequelize.define( 'User',
+const User = sequelize.define('User',
     {
         id: {
             type: DataTypes.INTEGER,
@@ -12,14 +12,15 @@ const User = sequelize.define( 'User',
         name: {
             type: DataTypes.STRING,
             allowNull: false
-        }, 
+        },
         email: {
-            type: DataTypes.STRING,
+            // 1000 caracteres
+            type: DataTypes.STRING(1000),
             allowNull: true
         }
-    } , {
-        timestamps: true // andadir unas columnas de fechas: createdAt y updatedAt
-    }
+    }, {
+    timestamps: true // andadir unas columnas de fechas: createdAt y updatedAt
+}
 
 )
 

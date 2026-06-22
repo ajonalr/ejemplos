@@ -2,6 +2,7 @@ const { Sequelize } = require('sequelize')
 
 require('dotenv').config();
 
+
 const dbcn = new Sequelize('proof1', 'root', 'root', {
     host: 'localhost',
     port: 33061,
